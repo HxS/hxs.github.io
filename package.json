@@ -46,7 +46,7 @@
     "url": "git+https://github.com/HxS/hxs.github.io.git"
   },
   "scripts": {
-    "start": "npm install && bower install && gulp build && gulp watch",
+    "start": "npm install && bower install && gulp build",
     "build": "gulp build",
     "build:css": "gulp build:css",
     "build:hugo": "gulp build:hugo",
