@@ -22,8 +22,11 @@ fi
 
 git config --global user.name $GIT_USER
 git config --global user.email $GIT_EMAIL
-git config --global github.user $GITHUB_USER
-git config --global github.token $GITHUB_TOKEN
+git config --global credential.helper store
+echo "https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
 
-npm start
-npm run deploy
+./scripts/install_hugo.sh
+
+npm start && npm run deploy
+
+rm ~/.git-credentials

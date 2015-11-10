@@ -7,19 +7,16 @@ cache:
     - bower_components
 env:
   global:
+    - PATH=$PATH:$TRAVIS_BUILD_DIR/bin/
     - HUGO_VERSION=0.14
 before_install:
-  - wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux_amd64.tar.gz
-  - tar xvzf hugo_${HUGO_VERSION}_linux_amd64.tar.gz
-  - mkdir $TRAVIS_BUILD_DIR/bin
-  - mv hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 $TRAVIS_BUILD_DIR/bin/hugo
-  - export PATH=$PATH:$TRAVIS_BUILD_DIR/bin/
-  - rm -rf hugo_${HUGO_VERSION}_linux_amd64*
+  - ./scripts/install_hugo.sh
 script:
   - npm start
 
 deploy:
   provider: script
-  script: deploy.sh
+  script: ./scripts/deploy.sh
+  skip_cleanup: true
   on:
     branch: source

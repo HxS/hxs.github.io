@@ -86,5 +86,5 @@ gulp.task("watch", ["watch:css", "watch:hugo"]);
 
 gulp.task("deploy", ["build"], () => {
   return gulp.src(path.join(DEST_DIR, "**/*"))
-    .pipe($.ghPages(DEPLOY_OPTIONS));
+    .pipe($g.ghPages(DEPLOY_OPTIONS));
 });
