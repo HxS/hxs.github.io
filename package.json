@@ -53,8 +53,9 @@
     "clean": "gulp clean",
     "deploy": "gulp deploy",
     "serve": "gulp serve",
-    "watch:css": "serve:css",
-    "watch:hugo": "serve:watch",
+    "watch": "gulp watch",
+    "watch:css": "gulp watch:css",
+    "watch:hugo": "gulp watch:hugo",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
