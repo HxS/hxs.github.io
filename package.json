@@ -45,6 +45,15 @@
     "url": "git+https://github.com/HxS/hxs.github.io.git"
   },
   "scripts": {
+    "start": "npm install && bower install && gulp build && gulp watch",
+    "build": "gulp build",
+    "build:css": "gulp build:css",
+    "build:hugo": "gulp build:hugo",
+    "clean": "gulp clean",
+    "deploy": "gulp deploy",
+    "serve": "gulp serve",
+    "watch:css": "serve:css",
+    "watch:hugo": "serve:watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
