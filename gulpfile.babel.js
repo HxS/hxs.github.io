@@ -11,7 +11,7 @@ const $p = loadPlugins("postcss-*");
 
 // configurations --------------------------------
 const SRC_DIR       = path.join(__dirname, "./assets");
-const TEMP_DIR      = path.join(__dirname, "./static/assets");
+const TEMP_DIR      = path.join(__dirname, "./static");
 const DEST_DIR      = path.join(__dirname, "./public");
 
 const STYLES_DIR    = path.join(SRC_DIR, "styles");
@@ -22,6 +22,10 @@ const CLEAN_TARGET_DIRS = [
   TEMP_DIR,
   path.join(DEST_DIR, "*"),
   `!${path.join(DEST_DIR, ".git")}`
+];
+
+const COPY_TARGET_FILES = [
+  path.join(SRC_DIR, "*")
 ];
 
 const DEPLOY_OPTIONS = {
@@ -59,11 +63,17 @@ gulp.task("watch:css", () => {
 // misc --------------------------------
 gulp.task("clean", () => del(CLEAN_TARGET_DIRS, {dot: true}))
 
+gulp.task("build:copy", () => {
+  return gulp.src(COPY_TARGET_FILES, {dot: true, nodir: true})
+    .pipe(gulp.dest(TEMP_DIR))
+    .pipe($g.size({title: "copy"}));
+});
+
 gulp.task("build:hugo", $g.shell.task("hugo"))
 gulp.task("serve", $g.shell.task("hugo server"))
 gulp.task("watch:hugo", $g.shell.task("hugo server -ws ."))
 
-gulp.task("build", ["build:hugo", "build:css"]);
+gulp.task("build", ["build:copy", "build:css", "build:hugo"]);
 
 gulp.task("watch", ["watch:css", "watch:hugo"]);
 
