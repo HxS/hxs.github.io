@@ -5,6 +5,14 @@ cache:
   directories:
     - node_modules
     - bower_components
+env:
+  global:
+    - HUGO_VERSION=0.14
+before_install:
+  - wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux_amd64.tar.gz
+  - tar xvzf hugo_${HUGO_VERSION}_linux_amd64.tar.gz
+  - mv hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 hugo
+  - export PATH=$PATH:$PWD/hugo_${HUGO_VERSION}_linux_amd64/
 script:
   - npm start
 

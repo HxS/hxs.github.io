@@ -20,13 +20,6 @@ if  [ -z "$GITHUB_TOKEN" ]; then
     exit 1
 fi
 
-HUGO_VERSION=0.14
-
-wget https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux_amd64.tar.gz
-tar xvzf hugo_${HUGO_VERSION}_linux_amd64.tar.gz
-mv hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 hugo
-export PATH=$PATH:$PWD/hugo_${HUGO_VERSION}_linux_amd64/
-
 git config --global user.name $GIT_USER
 git config --global user.email $GIT_EMAIL
 git config --global github.user $GITHUB_USER
