@@ -4,6 +4,7 @@ import cssnano      from "cssnano";
 import immutableCss from "immutable-css";
 import loadPlugins  from "load-plugins";
 import del          from "del";
+import runSequence  from "run-sequence";
 
 const $g = loadPlugins("gulp-*", { strip: "gulp" });
 const $p = loadPlugins("postcss-*");
@@ -73,7 +74,13 @@ gulp.task("build:hugo", $g.shell.task("hugo"))
 gulp.task("serve", $g.shell.task("hugo server"))
 gulp.task("watch:hugo", $g.shell.task("hugo server -ws ."))
 
-gulp.task("build", ["build:copy", "build:css", "build:hugo"]);
+gulp.task("build", ["clean"], (callback) => {
+  runSequence(
+    ["build:copy", "build:css"],
+    "build:hugo",
+    callback
+  );
+});
 
 gulp.task("watch", ["watch:css", "watch:hugo"]);
 
