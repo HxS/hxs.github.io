@@ -1,7 +1,0 @@
-{
-  "name": "hsx.github.io",
-  "dependencies": {
-    "sanitize-css": "~3.0.0"
-  },
-  "private": true
-}
